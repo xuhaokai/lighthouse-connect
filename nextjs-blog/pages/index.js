@@ -34,7 +34,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <div className={styles.platformName}>Light Pass</div>
+      <div className={styles.platformName}>Light Path</div>
 
       <main>
         <h2 className={styles.title}>Project List</h2>

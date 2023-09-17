@@ -85,7 +85,7 @@ const Project = () => {
   const fetchUserIds = async () => {
     // Create the OpenAI API client
     const openai = new OpenAI({
-      apiKey: "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", // defaults to process.env["OPENAI_API_KEY"]
+      apiKey: "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", // defaults to process.env["OPENAI_API_KEY"]
       dangerouslyAllowBrowser: true,
     });
 
@@ -141,15 +141,13 @@ const Project = () => {
 
     // Call the OpenAI API to generate the Mermaid input code from the natural language input
 
-    // async function main() {
-    //   const completion = await openai.chat.completions.create({
-    //     messages: [{ role: "user", content: messageContent }],
-    //     model: "gpt-3.5-turbo",
-    //   });
+    console.log("run AI");
 
-    //   console.log(completion.choices);
-    // }
-    setUserIds([2]);
+    // const completion = await openai.chat.completions.create({
+    //   messages: [{ role: "user", content: messageContent }],
+    //   model: "gpt-3.5-turbo",
+    // });
+    // console.log(completion.choices);
   };
 
   const handleRunQuery = () => {
