@@ -17,9 +17,10 @@ const Project = () => {
       email: "johndoe@example.com",
       age: 30,
       location: "New York",
-      decideType: "Mac",
-      technicalProficiency: "Intermediate",
+      deviceType: "Mac",
+      atApps: "Screen readers",
       gender: "Male",
+      vision: "Blind"
     },
     {
       id: 2,
@@ -27,9 +28,32 @@ const Project = () => {
       email: "janesmith@example.com",
       age: 25,
       location: "Los Angeles",
-      decideType: "Windows",
-      technicalProficiency: "Advanced",
+      deviceType: "Windows",
+      atApps: "Zoom/Magnification tools",
       gender: "Female",
+      vision: "Low Vision"
+    },
+    {
+      id: 3,
+      name: "Jason Paul",
+      email: "jasonpaul@example.com",
+      age: 40,
+      location: "San Francisco",
+      deviceType: "iPhone",
+      atApps: "Screen readers",
+      gender: "Male",
+      vision: "Blind"
+    },
+    {
+      id: 4,
+      name: "Amy Chow",
+      email: "amychow@example.com",
+      age: 60,
+      location: "Phoenix",
+      deviceType: "Android",
+      atApps: "Zoom/Magnification tools",
+      gender: "Female",
+      vision: "Low Vision"
     },
     // Add more test users here...
   ];
@@ -41,9 +65,10 @@ const Project = () => {
     email: "",
     age: "",
     location: "",
-    decideType: "",
-    technicalProficiency: "",
+    deviceType: "",
+    atApps: "",
     gender: "",
+    vision: "",
   });
   const [selectedUsers, setSelectedUsers] = useState([]);
   const [emailModalOpen, setEmailModalOpen] = useState(false);
@@ -63,9 +88,10 @@ const Project = () => {
       email: "",
       age: "",
       location: "",
-      decideType: "",
-      technicalProficiency: "",
+      deviceType: "",
+      atApps: "",
       gender: "",
+      vision: "",
     });
     filterData({});
   };
@@ -77,9 +103,10 @@ const Project = () => {
       email: "",
       age: "",
       location: "",
-      decideType: "",
-      technicalProficiency: "",
+      deviceType: "",
+      atApps: "",
       gender: "",
+      vision:"",
     });
   };
 
@@ -167,9 +194,10 @@ const Project = () => {
               <th>Email</th>
               <th>Age</th>
               <th>Location</th>
-              <th>Decide Type</th>
-              <th>Tech Proficiency</th>
+              <th>Device Type</th>
+              <th>AT Apps</th>
               <th>Gender</th>
+              <th>Vision Status</th>
             </tr>
           </thead>
           {/* Table body */}
@@ -181,9 +209,10 @@ const Project = () => {
                 <td>{user.email}</td>
                 <td>{user.age}</td>
                 <td>{user.location}</td>
-                <td>{user.decideType}</td>
-                <td>{user.technicalProficiency}</td>
+                <td>{user.deviceType}</td>
+                <td>{user.atApps}</td>
                 <td>{user.gender}</td>
+                <td>{user.vision}</td>
               </tr>
             ))}
           </tbody>
@@ -231,20 +260,20 @@ const Project = () => {
           />
         </div>
         <div>
-          <label>Decide Type:</label>
+          <label>Device Type:</label>
           <input
             type="text"
-            name="decideType"
-            value={filters.decideType}
+            name="deviceType"
+            value={filters.deviceType}
             onChange={handleFilterChange}
           />
         </div>
         <div>
-          <label>Tech Proficiency:</label>
+          <label>AT Apps:</label>
           <input
             type="text"
-            name="technicalProficiency"
-            value={filters.technicalProficiency}
+            name="atApps"
+            value={filters.atApps}
             onChange={handleFilterChange}
           />
         </div>
@@ -254,6 +283,15 @@ const Project = () => {
             type="text"
             name="gender"
             value={filters.gender}
+            onChange={handleFilterChange}
+          />
+        </div>
+        <div>
+          <label>Vision Status:</label>
+          <input
+            type="text"
+            name="vision"
+            value={filters.vision}
             onChange={handleFilterChange}
           />
         </div>
@@ -273,9 +311,10 @@ const Project = () => {
               <th>Email</th>
               <th>Age</th>
               <th>Location</th>
-              <th>Decide Type</th>
-              <th>Tech Proficiency</th>
+              <th>Device Type</th>
+              <th>AT Apps</th>
               <th>Gender</th>
+              <th>Vision Status</th>
             </tr>
           </thead>
           {/* Table body */}
@@ -294,9 +333,10 @@ const Project = () => {
                 <td>{user.email}</td>
                 <td>{user.age}</td>
                 <td>{user.location}</td>
-                <td>{user.decideType}</td>
-                <td>{user.technicalProficiency}</td>
+                <td>{user.deviceType}</td>
+                <td>{user.atApps}</td>
                 <td>{user.gender}</td>
+                <td>{user.vision}</td>
               </tr>
             ))}
           </tbody>
