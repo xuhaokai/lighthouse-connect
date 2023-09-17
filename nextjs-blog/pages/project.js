@@ -83,8 +83,6 @@ const Project = () => {
   };
 
   const fetchUserIds = async () => {
-    setIsLoading(true);
-
     // Create the OpenAI API client
     const openai = new OpenAI({
       apiKey: "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", // defaults to process.env["OPENAI_API_KEY"]
