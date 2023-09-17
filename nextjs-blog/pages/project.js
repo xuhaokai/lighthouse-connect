@@ -97,6 +97,20 @@ const Project = () => {
     setEmailMessage("");
   };
 
+  //   const handleSendEmail = () => {
+  //     setIsLoading(true);
+  //     // Simulate sending email with a delay (1 second)
+  //     setTimeout(() => {
+  //       // Implement email sending logic here (e.g., using a backend service).
+  //       // You can access the selectedUsers and emailMessage to send emails to the selected users.
+  //       // After sending emails, set isLoading to false and setEmailSuccess to true.
+  //       // You can also close the modal.
+  //       setIsLoading(false);
+  //       setEmailSuccess(true);
+  //       handleCloseEmailModal();
+  //     }, 1000);
+  //   };
+  
   const handleSendEmail = () => {
     setIsLoading(true);
     // Simulate sending email with a delay (1 second)
@@ -104,10 +118,12 @@ const Project = () => {
       // Implement email sending logic here (e.g., using a backend service).
       // You can access the selectedUsers and emailMessage to send emails to the selected users.
       // After sending emails, set isLoading to false and setEmailSuccess to true.
-      // You can also close the modal.
+      // You can also close the modal if needed.
+      // For this example, we're setting emailSuccess to true.
       setIsLoading(false);
       setEmailSuccess(true);
-      handleCloseEmailModal();
+      // Uncomment the following line if you want to close the modal after sending the email
+      // handleCloseEmailModal();
     }, 1000);
   };
 
