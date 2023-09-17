@@ -20,24 +20,26 @@ export default function Home() {
       <main>
         <h1 className={styles.title}>Project List</h1>
 
-        <table className={styles.table}>
-          <thead>
-            <tr>
-              <th>Project ID</th>
-              <th>Project Name</th>
-              <th>Tester List</th>
-            </tr>
-          </thead>
-          <tbody>
-            {projects.map((project) => (
-              <tr key={project.id}>
-                <td>{project.id}</td>
-                <td>{project.name}</td>
-                <td>{project.testers.join(', ')}</td>
+        <div className={styles.tableContainer}>
+          <table className={styles.table}>
+            <thead>
+              <tr>
+                <th>Project ID</th>
+                <th>Project Name</th>
+                <th>Tester List</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {projects.map((project) => (
+                <tr key={project.id}>
+                  <td>{project.id}</td>
+                  <td>{project.name}</td>
+                  <td>{project.testers.join(', ')}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       </main>
 
       <footer>
@@ -53,10 +55,16 @@ export default function Home() {
           align-items: center;
         }
 
+        .tableContainer {
+          margin-top: 1rem;
+          margin-left: 2rem; /* Add margin to the left */
+          margin-right: 2rem; /* Add margin to the right */
+          overflow-x: auto; /* Add horizontal scroll if necessary */
+        }
+
         .table {
           width: 100%;
           border-collapse: collapse;
-          margin-top: 1rem;
         }
 
         th, td {
