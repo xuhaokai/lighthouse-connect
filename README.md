@@ -2,13 +2,21 @@
 
 https://lighthouse-sf.org/
 
+## Tech Stack
+
+- Next.js
+- AWS DynamoDB
+- OpenAI API
+- Vercel
+
 ## Table of Contents
 
 - [Getting Started](#getting-started)
   - [Prerequisites](#prerequisites)
   - [Installation](#installation)
   - [Running the Application](#running-the-application)
-
+- [Contributing](#contributing)
+  
 ## Getting Started
 
 These instructions will help you set up and run the project on your local machine.
@@ -32,12 +40,16 @@ Before you begin, ensure you have met the following requirements:
 3. Install the project dependencies:
    ```bash
    npm install
+   
 ### Running the Application
 1. ```bash
    npm run dev
    ```
 2. Open your web browser and go to http://localhost:3000 to view the application.
 
+## Contributing
+
+We appreciate your contributions and look forward to working together to improve this project!
 
 
 
