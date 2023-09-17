@@ -131,4 +131,16 @@
   background-color: #0053a0; /* Change the hover color as needed */
 }
 
+/* Add this style for the platform name */
+.platformName {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+/* ... (other styles) */
+
+
 /* Other styles */

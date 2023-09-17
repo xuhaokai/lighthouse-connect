@@ -1,4 +1,3 @@
-import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { useState } from 'react';
 import { useRouter } from 'next/router';
@@ -35,10 +34,7 @@ export default function Home() {
 
   return (
     <div className={styles.container}>
-      <Head>
-        <title>Project List</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
+      <div className={styles.platformName}>Light Pass</div>
 
       <main>
         <h1 className={styles.title}>Project List</h1>
