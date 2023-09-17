@@ -1,6 +1,6 @@
 # lighthouse-connect
 
-A brief description of your project.
+https://lighthouse-sf.org/
 
 ## Table of Contents
 
