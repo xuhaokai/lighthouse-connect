@@ -151,8 +151,7 @@ const Project = () => {
   return (
     <div>
       <h1>Project: {projectName}</h1>
-
-      <h2>Existing Project Users</h2>
+      <h2>Recruited Testers</h2>
       <div className="table-container">
         <table className="user-table">
           {/* Table header */}
@@ -186,6 +185,8 @@ const Project = () => {
         </table>
       </div>
 
+      <div style={{ margin: '200px 0' }}></div>
+      <div className="divider"></div>
       <h2>Tester Pool</h2>
       <div className="filter-inputs">
         <div>
@@ -400,6 +401,12 @@ const Project = () => {
           font-weight: bold;
           color: green;
           margin-top: 10px;
+        }
+
+        .divider {
+            margin: 20px 0;
+            height: 1px;
+            background-color: #ddd;
         }
       `}</style>
     </div>
