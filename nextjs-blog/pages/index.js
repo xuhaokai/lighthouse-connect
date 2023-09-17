@@ -7,10 +7,10 @@ export default function Home() {
   const router = useRouter();
   // Sample project data
   const initialProjects = [
-    { id: 1, name: 'Project A', testers: ['Tester 1', 'Tester 2'] },
-    { id: 2, name: 'Project B', testers: ['Tester 3', 'Tester 4'] },
-    { id: 3, name: 'Project C', testers: ['Tester 5', 'Tester 6'] },
-    { id: 4, name: 'Project D', testers: ['Tester 7', 'Tester 8'] },
+    { id: 1, name: 'Airbnb Guest User Flow', testers_needed: 20, recruited: 15 },
+    { id: 2, name: 'Airbnb Host User Flow', testers_needed: 10, recruited: 10 },
+    { id: 3, name: 'Snapchat Mobile Flow', testers_needed: 5, recruited: 5 },
+    { id: 4, name: 'Tesla Touch Pad', testers_needed: 30, recruited: 20 },
   ];
 
   const [projects, setProjects] = useState(initialProjects);
@@ -23,7 +23,8 @@ export default function Home() {
     const newProject = {
       id: projects.length + 1,
       name: newProjectName,
-      testers: [],
+      testers_needed: 0,
+      recruited: 0
     };
     setProjects([...projects, newProject]);
     setNewProjectName('');
@@ -48,7 +49,8 @@ export default function Home() {
               <tr>
                 <th>Project ID</th>
                 <th>Project Name</th>
-                <th>Tester List</th>
+                <th>Total Testers Needed</th>
+                <th>Testers Recruited</th>
               </tr>
             </thead>
             <tbody>
@@ -56,7 +58,8 @@ export default function Home() {
                 <tr key={project.id}>
                   <td>{project.id}</td>
                   <td>{project.name}</td>
-                  <td>{project.testers.join(', ')}</td>
+                  <td>{project.testers_needed}</td>
+                  <td>{project.recruited}</td>
                 </tr>
               ))}
             </tbody>
