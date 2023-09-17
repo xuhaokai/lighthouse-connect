@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/router";
 import { useState } from "react";
+import Link from 'next/link';
+
 
 const Project = () => {
   const router = useRouter();
@@ -151,6 +153,9 @@ const Project = () => {
   return (
     <div>
       <h1>Project: {projectName}</h1>
+      <Link href="/">
+        <div className="back-button">Back to Dashboard</div>
+      </Link>
       <h2>Recruited Testers</h2>
       <div className="table-container">
         <table className="user-table">

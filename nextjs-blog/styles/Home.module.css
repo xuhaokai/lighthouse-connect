@@ -114,4 +114,21 @@
   margin-top: 1rem;
 }
 
+/* Home.module.css */
+.backButton {
+  display: inline-block;
+  margin-bottom: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #0070f3; /* Change the color as needed */
+  color: #fff;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.backButton:hover {
+  background-color: #0053a0; /* Change the hover color as needed */
+}
+
 /* Other styles */
