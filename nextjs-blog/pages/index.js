@@ -1,14 +1,31 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import { useState } from 'react';
 
 export default function Home() {
   // Sample project data
-  const projects = [
+  const initialProjects = [
     { id: 1, name: 'Project A', testers: ['Tester 1', 'Tester 2'] },
     { id: 2, name: 'Project B', testers: ['Tester 3', 'Tester 4'] },
     { id: 3, name: 'Project C', testers: ['Tester 5', 'Tester 6'] },
     { id: 4, name: 'Project D', testers: ['Tester 7', 'Tester 8'] },
   ];
+
+  const [projects, setProjects] = useState(initialProjects);
+  const [newProjectName, setNewProjectName] = useState('');
+
+  const handleAddProject = () => {
+    if (newProjectName.trim() === '') {
+      return; // Don't add empty project names
+    }
+    const newProject = {
+      id: projects.length + 1,
+      name: newProjectName,
+      testers: [],
+    };
+    setProjects([...projects, newProject]);
+    setNewProjectName('');
+  };
 
   return (
     <div className={styles.container}>
@@ -39,6 +56,16 @@ export default function Home() {
               ))}
             </tbody>
           </table>
+        </div>
+
+        <div className={styles.addButtonContainer}>
+          <input
+            type="text"
+            placeholder="New Project Name"
+            value={newProjectName}
+            onChange={(e) => setNewProjectName(e.target.value)}
+          />
+          <button onClick={handleAddProject}>Add Project</button>
         </div>
       </main>
 
@@ -75,6 +102,17 @@ export default function Home() {
 
         th {
           background-color: #f5f5f5;
+        }
+
+        .addButtonContainer {
+          display: flex;
+          margin-top: 1rem;
+          align-items: center;
+        }
+
+        input[type="text"] {
+          padding: 0.5rem;
+          margin-right: 1rem;
         }
 
         footer {
