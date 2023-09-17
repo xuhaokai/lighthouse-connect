@@ -49,6 +49,32 @@ const Project = () => {
     filterData(filters);
   };
 
+  const handleResetFilters = () => {
+    setFilters({
+      name: '',
+      email: '',
+      age: '',
+      location: '',
+      decideType: '',
+      technicalProficiency: '',
+      gender: '',
+    });
+    filterData({});
+  };
+
+  const handleRefreshTable = () => {
+    setTestUsers(initialTestUsers);
+    setFilters({
+      name: '',
+      email: '',
+      age: '',
+      location: '',
+      decideType: '',
+      technicalProficiency: '',
+      gender: '',
+    });
+  };
+
   const filterData = (filterValues) => {
     const filteredUsers = initialTestUsers.filter((user) =>
       Object.entries(filterValues).every(([key, value]) =>
@@ -128,6 +154,10 @@ const Project = () => {
           />
         </div>
       </div>
+      <div className="button-container">
+        <button onClick={handleResetFilters}>Reset Filters</button>
+        <button onClick={handleRefreshTable}>Refresh Table</button>
+      </div>
       <div className="table-container">
         <table className="user-table">
           <thead>
@@ -174,29 +204,53 @@ const Project = () => {
           display: block;
         }
 
-        .table-container {
-          max-width: 100%;
-          overflow-x: auto;
+        .button-container {
+          margin-top: 10px;
         }
 
-        .user-table {
-          width: 100%;
-          border-collapse: collapse;
+        .button-container button {
+          margin-right: 10px;
+          padding: 5px 10px;
+          background-color: #007bff;
+          color: #fff;
+          border: none;
+          border-radius: 4px;
+          cursor: pointer;
         }
-
-        .user-table th,
-        .user-table td {
-          border: 1px solid #ddd;
-          padding: 8px;
-          text-align: left;
-        }
-
-        .user-table th {
-          background-color: #f2f2f2;
-        }
-      `}</style>
-    </div>
-  );
-};
-
-export default Project;
+          .button-container button {
+            margin-right: 10px;
+            padding: 5px 10px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+          }
+  
+          .table-container {
+            max-width: 100%;
+            overflow-x: auto;
+          }
+  
+          .user-table {
+            width: 100%;
+            border-collapse: collapse;
+          }
+  
+          .user-table th,
+          .user-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+          }
+  
+          .user-table th {
+            background-color: #f2f2f2;
+          }
+        `}</style>
+      </div>
+    );
+  };
+  
+  export default Project;
+  
