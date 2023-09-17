@@ -42,6 +42,9 @@ const Project = () => {
     technicalProficiency: '',
     gender: '',
   });
+  const [selectedUsers, setSelectedUsers] = useState([]);
+  const [emailModalOpen, setEmailModalOpen] = useState(false);
+  const [emailMessage, setEmailMessage] = useState('');
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -73,6 +76,30 @@ const Project = () => {
       technicalProficiency: '',
       gender: '',
     });
+  };
+
+  const handleSelectUser = (userId) => {
+    if (selectedUsers.includes(userId)) {
+      setSelectedUsers(selectedUsers.filter((id) => id !== userId));
+    } else {
+      setSelectedUsers([...selectedUsers, userId]);
+    }
+  };
+
+  const handleOpenEmailModal = () => {
+    setEmailModalOpen(true);
+  };
+
+  const handleCloseEmailModal = () => {
+    setEmailModalOpen(false);
+    setEmailMessage('');
+  };
+
+  const handleSendEmail = () => {
+    // Implement email sending logic here (e.g., using a backend service).
+    // You can access the selectedUsers and emailMessage to send emails to the selected users.
+    // After sending emails, close the modal.
+    handleCloseEmailModal();
   };
 
   const filterData = (filterValues) => {
@@ -162,6 +189,7 @@ const Project = () => {
         <table className="user-table">
           <thead>
             <tr>
+              <th>Select</th>
               <th>User ID</th>
               <th>Name</th>
               <th>Email</th>
@@ -175,6 +203,13 @@ const Project = () => {
           <tbody>
             {testUsers.map((user) => (
               <tr key={user.id}>
+                <td>
+                  <input
+                    type="checkbox"
+                    checked={selectedUsers.includes(user.id)}
+                    onChange={() => handleSelectUser(user.id)}
+                  />
+                </td>
                 <td>{user.id}</td>
                 <td>{user.name}</td>
                 <td>{user.email}</td>
@@ -188,8 +223,29 @@ const Project = () => {
           </tbody>
         </table>
       </div>
+      <div className="button-container">
+        <button onClick={handleOpenEmailModal}>Send Email</button>
+      </div>
+      {emailModalOpen && (
+        <div className="email-modal">
+          <div className="email-modal-content">
+            <span className="close" onClick={handleCloseEmailModal}>
+              &times;
+            </span>
+            <h2>Compose Email</h2>
+            <textarea
+              rows="4"
+              cols="50"
+              placeholder="Enter your email message..."
+              value={emailMessage}
+              onChange={(e) => setEmailMessage(e.target.value)}
+            />
+            <button onClick={handleSendEmail}>Send</button>
+          </div>
+        </div>
+      )}
 
-      <style jsx>{`
+<style jsx>{`
         .filter-inputs {
           display: flex;
           flex-wrap: wrap;
@@ -248,9 +304,8 @@ const Project = () => {
             background-color: #f2f2f2;
           }
         `}</style>
-      </div>
-    );
-  };
-  
-  export default Project;
-  
+    </div>
+  );
+};
+
+export default Project;
