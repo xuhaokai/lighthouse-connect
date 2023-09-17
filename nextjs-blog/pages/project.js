@@ -1,9 +1,9 @@
 // Project.js
 
 import { useRouter } from "next/router";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Link from "next/link";
-import openai from "openai";
+import OpenAI from "openai";
 
 const Project = () => {
   const router = useRouter();
@@ -85,29 +85,73 @@ const Project = () => {
   const fetchUserIds = async () => {
     setIsLoading(true);
 
-    // Define your OpenAI API key
-    const apiKey = "YOUR_OPENAI_API_KEY";
+    // Create the OpenAI API client
+    const openai = new OpenAI({
+      apiKey: "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", // defaults to process.env["OPENAI_API_KEY"]
+      dangerouslyAllowBrowser: true,
+    });
 
-    setUserIds([2]);
-    // Make the API call to OpenAI
-    // try {
-    //   const response = await openai.Completion.create({
-    //     engine: "davinci",
-    //     prompt: `Return the user IDs of users where ${query}`,
-    //     max_tokens: 50,
-    //     apiKey: apiKey,
+    const messageContent = `We have users:
+    [
+        {
+          id: 1,
+          name: "John Doe",
+          email: "johndoe@example.com",
+          age: 30,
+          location: "New York",
+          deviceType: "Mac",
+          atApps: "Screen readers",
+          gender: "Male",
+          vision: "Blind"
+        },
+        {
+          id: 2,
+          name: "Jane Smith",
+          email: "janesmith@example.com",
+          age: 25,
+          location: "Los Angeles",
+          deviceType: "Windows",
+          atApps: "Zoom/Magnification tools",
+          gender: "Female",
+          vision: "Low Vision"
+        },
+        {
+          id: 3,
+          name: "Jason Paul",
+          email: "jasonpaul@example.com",
+          age: 40,
+          location: "San Francisco",
+          deviceType: "iPhone",
+          atApps: "Screen readers",
+          gender: "Male",
+          vision: "Blind"
+        },
+        {
+          id: 4,
+          name: "Amy Chow",
+          email: "amychow@example.com",
+          age: 60,
+          location: "Phoenix",
+          deviceType: "Android",
+          atApps: "Zoom/Magnification tools",
+          gender: "Female",
+          vision: "Low Vision"
+        },
+    
+    Your task is to fetch and only return the user id list by the query, don't show me how you do it:
+    ${query}`;
+
+    // Call the OpenAI API to generate the Mermaid input code from the natural language input
+
+    // async function main() {
+    //   const completion = await openai.chat.completions.create({
+    //     messages: [{ role: "user", content: messageContent }],
+    //     model: "gpt-3.5-turbo",
     //   });
 
-    //   // Extract the user IDs from the OpenAI response
-    //   const extractedIds = response.choices[0].text
-    //     .split(",")
-    //     .map((id) => parseInt(id.trim(), 10));
-    //   setUserIds([2]);
-    // } catch (error) {
-    //   console.error("Error fetching user IDs:", error);
-    // } finally {
-    //   setIsLoading(false);
+    //   console.log(completion.choices);
     // }
+    setUserIds([2]);
   };
 
   const handleRunQuery = () => {
