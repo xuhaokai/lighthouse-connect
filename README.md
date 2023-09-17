@@ -1,6 +1,12 @@
-# lighthouse-connect
+<img src="https://github.com/xuhaokai/lighthouse-connect/assets/11579057/07cc9945-f491-404f-99d1-dbb1b9587dcc" alt="Image Alt Text" width="300"/>
 
-https://lighthouse-sf.org/
+# Light Path
+
+Welcome to Light Path, a platform designed to empower Lighthouse SF in its mission to create opportunities and provide support for the visually impaired community.
+
+## About Lighthouse SF
+
+[Lighthouse for the Blind and Visually Impaired](https://lighthouse-sf.org/) (Lighthouse SF) is a renowned organization dedicated to enhancing the quality of life for individuals who are blind or visually impaired. They provide a wide range of services, resources, and programs to help individuals lead independent, fulfilling lives. Lighthouse SF plays a pivotal role in fostering inclusion and accessibility for the visually impaired community.
 
 ## Tech Stack
 
