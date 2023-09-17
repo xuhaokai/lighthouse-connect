@@ -1,9 +1,9 @@
 // Project.js
 
 import { useRouter } from "next/router";
-import { useState } from "react";
-import Link from 'next/link';
-
+import { useState, useEffect } from "react";
+import Link from "next/link";
+import openai from "openai";
 
 const Project = () => {
   const router = useRouter();
@@ -20,7 +20,7 @@ const Project = () => {
       deviceType: "Mac",
       atApps: "Screen readers",
       gender: "Male",
-      vision: "Blind"
+      vision: "Blind",
     },
     {
       id: 2,
@@ -31,7 +31,7 @@ const Project = () => {
       deviceType: "Windows",
       atApps: "Zoom/Magnification tools",
       gender: "Female",
-      vision: "Low Vision"
+      vision: "Low Vision",
     },
     {
       id: 3,
@@ -42,7 +42,7 @@ const Project = () => {
       deviceType: "iPhone",
       atApps: "Screen readers",
       gender: "Male",
-      vision: "Blind"
+      vision: "Blind",
     },
     {
       id: 4,
@@ -53,7 +53,7 @@ const Project = () => {
       deviceType: "Android",
       atApps: "Zoom/Magnification tools",
       gender: "Female",
-      vision: "Low Vision"
+      vision: "Low Vision",
     },
     // Add more test users here...
   ];
@@ -75,6 +75,46 @@ const Project = () => {
   const [emailMessage, setEmailMessage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [emailSuccess, setEmailSuccess] = useState(false);
+  const [query, setQuery] = useState("");
+  const [userIds, setUserIds] = useState([]);
+
+  const handleQueryChange = (e) => {
+    setQuery(e.target.value);
+  };
+
+  const fetchUserIds = async () => {
+    setIsLoading(true);
+
+    // Define your OpenAI API key
+    const apiKey = "YOUR_OPENAI_API_KEY";
+
+    setUserIds([2]);
+    // Make the API call to OpenAI
+    // try {
+    //   const response = await openai.Completion.create({
+    //     engine: "davinci",
+    //     prompt: `Return the user IDs of users where ${query}`,
+    //     max_tokens: 50,
+    //     apiKey: apiKey,
+    //   });
+
+    //   // Extract the user IDs from the OpenAI response
+    //   const extractedIds = response.choices[0].text
+    //     .split(",")
+    //     .map((id) => parseInt(id.trim(), 10));
+    //   setUserIds([2]);
+    // } catch (error) {
+    //   console.error("Error fetching user IDs:", error);
+    // } finally {
+    //   setIsLoading(false);
+    // }
+  };
+
+  const handleRunQuery = () => {
+    if (query.trim() !== "") {
+      fetchUserIds();
+    }
+  };
 
   const handleFilterChange = (e) => {
     const { name, value } = e.target;
@@ -106,7 +146,7 @@ const Project = () => {
       deviceType: "",
       atApps: "",
       gender: "",
-      vision:"",
+      vision: "",
     });
   };
 
@@ -156,7 +196,9 @@ const Project = () => {
     });
 
     // Remove the selected users from the tester pool
-    const updatedTestUsers = testUsers.filter((user) => !selectedUsers.includes(user.id));
+    const updatedTestUsers = testUsers.filter(
+      (user) => !selectedUsers.includes(user.id)
+    );
 
     // Update the state with the new user lists
     setProjectUsers(updatedProjectUsers);
@@ -219,9 +261,18 @@ const Project = () => {
         </table>
       </div>
 
-      <div style={{ margin: '100px 0' }}></div>
+      <div style={{ margin: "100px 0" }}></div>
       <div className="divider"></div>
       <h2>Tester Pool</h2>
+      <div>
+        <input
+          type="text"
+          placeholder="Enter your query..."
+          value={query}
+          onChange={handleQueryChange}
+        />
+        <button onClick={handleRunQuery}>Run AI Query</button>
+      </div>
       <div className="filter-inputs">
         <div>
           <label>Name:</label>
@@ -324,7 +375,10 @@ const Project = () => {
                 <td>
                   <input
                     type="checkbox"
-                    checked={selectedUsers.includes(user.id)}
+                    checked={
+                      selectedUsers.includes(user.id) ||
+                      userIds.includes(user.id)
+                    }
                     onChange={() => handleSelectUser(user.id)}
                   />
                 </td>
@@ -344,7 +398,9 @@ const Project = () => {
       </div>
       <div className="button-container">
         <button onClick={handleOpenEmailModal}>Send Email</button>
-        <button onClick={handleAddSelectedUsers}>Add Selected Users to Project</button>
+        <button onClick={handleAddSelectedUsers}>
+          Add Selected Users to Project
+        </button>
       </div>
       {emailModalOpen && (
         <div className="email-modal">
@@ -449,9 +505,9 @@ const Project = () => {
         }
 
         .divider {
-            margin: 20px 0;
-            height: 1px;
-            background-color: #ddd;
+          margin: 20px 0;
+          height: 1px;
+          background-color: #ddd;
         }
       `}</style>
     </div>
