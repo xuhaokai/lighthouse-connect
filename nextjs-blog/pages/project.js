@@ -33,6 +33,7 @@ const Project = () => {
   ];
 
   const [testUsers, setTestUsers] = useState(initialTestUsers);
+  const [projectUsers, setProjectUsers] = useState([]);
   const [filters, setFilters] = useState({
     name: "",
     email: "",
@@ -97,20 +98,6 @@ const Project = () => {
     setEmailMessage("");
   };
 
-  //   const handleSendEmail = () => {
-  //     setIsLoading(true);
-  //     // Simulate sending email with a delay (1 second)
-  //     setTimeout(() => {
-  //       // Implement email sending logic here (e.g., using a backend service).
-  //       // You can access the selectedUsers and emailMessage to send emails to the selected users.
-  //       // After sending emails, set isLoading to false and setEmailSuccess to true.
-  //       // You can also close the modal.
-  //       setIsLoading(false);
-  //       setEmailSuccess(true);
-  //       handleCloseEmailModal();
-  //     }, 1000);
-  //   };
-  
   const handleSendEmail = () => {
     setIsLoading(true);
     // Simulate sending email with a delay (1 second)
@@ -125,6 +112,29 @@ const Project = () => {
       // Uncomment the following line if you want to close the modal after sending the email
       // handleCloseEmailModal();
     }, 1000);
+  };
+
+  const handleAddSelectedUsers = () => {
+    // Create a copy of the current project's tester list
+    const updatedProjectUsers = [...projectUsers];
+
+    // Add the selected users to the project's user list
+    selectedUsers.forEach((userId) => {
+      const user = testUsers.find((u) => u.id === userId);
+      if (user) {
+        updatedProjectUsers.push(user);
+      }
+    });
+
+    // Remove the selected users from the tester pool
+    const updatedTestUsers = testUsers.filter((user) => !selectedUsers.includes(user.id));
+
+    // Update the state with the new user lists
+    setProjectUsers(updatedProjectUsers);
+    setTestUsers(updatedTestUsers);
+
+    // Clear the selected users
+    setSelectedUsers([]);
   };
 
   const filterData = (filterValues) => {
@@ -142,7 +152,41 @@ const Project = () => {
     <div>
       <h1>Project: {projectName}</h1>
 
-      <h2>Test Users</h2>
+      <h2>Existing Project Users</h2>
+      <div className="table-container">
+        <table className="user-table">
+          {/* Table header */}
+          <thead>
+            <tr>
+              <th>User ID</th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Age</th>
+              <th>Location</th>
+              <th>Decide Type</th>
+              <th>Tech Proficiency</th>
+              <th>Gender</th>
+            </tr>
+          </thead>
+          {/* Table body */}
+          <tbody>
+            {projectUsers.map((user) => (
+              <tr key={user.id}>
+                <td>{user.id}</td>
+                <td>{user.name}</td>
+                <td>{user.email}</td>
+                <td>{user.age}</td>
+                <td>{user.location}</td>
+                <td>{user.decideType}</td>
+                <td>{user.technicalProficiency}</td>
+                <td>{user.gender}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+
+      <h2>Tester Pool</h2>
       <div className="filter-inputs">
         <div>
           <label>Name:</label>
@@ -214,6 +258,7 @@ const Project = () => {
       </div>
       <div className="table-container">
         <table className="user-table">
+          {/* Table header */}
           <thead>
             <tr>
               <th>Select</th>
@@ -227,6 +272,7 @@ const Project = () => {
               <th>Gender</th>
             </tr>
           </thead>
+          {/* Table body */}
           <tbody>
             {testUsers.map((user) => (
               <tr key={user.id}>
@@ -252,6 +298,7 @@ const Project = () => {
       </div>
       <div className="button-container">
         <button onClick={handleOpenEmailModal}>Send Email</button>
+        <button onClick={handleAddSelectedUsers}>Add Selected Users to Project</button>
       </div>
       {emailModalOpen && (
         <div className="email-modal">
