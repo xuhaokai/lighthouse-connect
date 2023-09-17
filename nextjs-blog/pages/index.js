@@ -1,8 +1,10 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
 import { useState } from 'react';
+import { useRouter } from 'next/router';
 
 export default function Home() {
+  const router = useRouter();
   // Sample project data
   const initialProjects = [
     { id: 1, name: 'Project A', testers: ['Tester 1', 'Tester 2'] },
@@ -25,6 +27,9 @@ export default function Home() {
     };
     setProjects([...projects, newProject]);
     setNewProjectName('');
+
+    // Navigate to the new project page with the project name as a query parameter
+    router.push(`/project?projectName=${encodeURIComponent(newProject.name)}`);
   };
 
   return (
