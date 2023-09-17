@@ -24,11 +24,11 @@ Before you begin, ensure you have met the following requirements:
 1. Clone the repository:
 
    ```bash
-   git clone https://github.com/your-username/your-project.git 
+   git clone https://github.com/xuhaokai/lighthouse-connect.git
    ```
 2. Navigate to the project directory:
    ```bash
-   cd your-project
+   cd nextjs-blog
 3. Install the project dependencies:
    ```bash
    npm install
