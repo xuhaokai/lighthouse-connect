@@ -37,7 +37,7 @@ export default function Home() {
       <div className={styles.platformName}>Light Pass</div>
 
       <main>
-        <h1 className={styles.title}>Project List</h1>
+        <h2 className={styles.title}>Project List</h2>
 
         <div className={styles.tableContainer}>
           <table className={styles.table}>
