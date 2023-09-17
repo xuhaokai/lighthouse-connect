@@ -219,7 +219,7 @@ const Project = () => {
         </table>
       </div>
 
-      <div style={{ margin: '200px 0' }}></div>
+      <div style={{ margin: '100px 0' }}></div>
       <div className="divider"></div>
       <h2>Tester Pool</h2>
       <div className="filter-inputs">
